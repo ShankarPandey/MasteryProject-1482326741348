@@ -17,7 +17,7 @@ uri = "mongodb://admin:VSBVBFCGCIFGXQFS@bluemix-sandbox-dal-9-portal.0.dblayer.c
 
 client = MongoClient()
 
-client = MongoClient(uri)
+client = MongoClient(uri,ssl_ca_certs="Mongo.crt")
 print client
 
 db = client.LCHAnlyzer
