@@ -12,8 +12,8 @@ except ImportError:
 PORT = int(os.getenv('PORT', 8000))
 # Change current directory to avoid exposure of control files
 
-#uri = "mongodb://admin:VSBVBFCGCIFGXQFS@bluemix-sandbox-dal-9-portal.0.dblayer.com:19651/admin?ssl=true"
-uri = "mongodb://admin:VSBVBFCGCIFGXQFS@bluemix-sandbox-dal-9-portal.0.dblayer.com"
+uri = "mongodb://admin:VSBVBFCGCIFGXQFS@bluemix-sandbox-dal-9-portal.0.dblayer.com:19651/admin?ssl=true"
+#uri = "mongodb://admin:VSBVBFCGCIFGXQFS@bluemix-sandbox-dal-9-portal.0.dblayer.com"
 
 client = MongoClient()
 
