@@ -32,8 +32,8 @@ print('connected to mongodb!, welcome to mongodb connection, have a fun')
 
 # VCAP_SERVICES mapping END
 
-output = C1.def1()
-print output
+#output = C1.def1()
+#print output
 
 httpd = Server(("", PORT), Handler)
 try:
