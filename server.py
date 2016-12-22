@@ -2,8 +2,8 @@ import os
 import pymongo
 import ssl
 import json
-from Modeler import *
-from Scorer import *
+#from Modeler import *
+#from Scorer import *
 
 from pymongo import MongoClient
 try:
