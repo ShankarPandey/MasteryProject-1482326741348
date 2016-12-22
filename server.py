@@ -1,6 +1,8 @@
 import os
+import pymongo
+import ssl
+import json  
 from pymongo import MongoClient
-
 try:
   from SimpleHTTPServer import SimpleHTTPRequestHandler as Handler
   from SocketServer import TCPServer as Server
@@ -12,9 +14,6 @@ except ImportError:
 PORT = int(os.getenv('PORT', 8000))
 # Change current directory to avoid exposure of control files
 os.chdir('static')
-
-#uri = "mongodb://admin:VSBVBFCGCIFGXQFS@bluemix-sandbox-dal-9-portal.0.dblayer.com:19651/admin?ssl=true"
-
 
 # VCAP_SERVICES mapping Start
 
