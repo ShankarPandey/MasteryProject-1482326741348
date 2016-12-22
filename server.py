@@ -20,7 +20,7 @@ os.chdir('static')
 
 services = os.getenv('VCAP_SERVICES')
 services_json = json.loads(services)
-mongodb_url = services_json['compose-for-mongodb'][0]['admin:VSBVBFCGCIFGXQFS']['mongodb://admin:VSBVBFCGCIFGXQFS@bluemix-sandbox-dal-9-portal.0.dblayer.com:19651/admin?ssl=true']                     
+mongodb_url = services_json['compose-for-mongodb'][0]['credentials']['uri']                     
 #------>>>>>>> Map your vcap_services here
 #connect:
 client = MongoClient(mongodb_url)  
