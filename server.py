@@ -1,7 +1,10 @@
 import os
 import pymongo
 import ssl
-import json  
+import json
+from Modeler import *
+from Scorer import *
+
 from pymongo import MongoClient
 try:
   from SimpleHTTPServer import SimpleHTTPRequestHandler as Handler
@@ -28,6 +31,9 @@ db = client.get_default_database()
 print('connected to mongodb!, welcome to mongodb connection, have a fun')
 
 # VCAP_SERVICES mapping END
+
+output = C1.def1()
+print output
 
 httpd = Server(("", PORT), Handler)
 try:
