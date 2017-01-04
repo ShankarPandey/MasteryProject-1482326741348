@@ -1,2 +1,5 @@
 pymongo
-cPickle
+pandas
+sklearn
+scipy
+numpy

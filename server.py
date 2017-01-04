@@ -1,11 +1,11 @@
 import os
 import pymongo
-import ssl
 import json
-#from Modeler import *
-#from Scorer import *
-
+import pandas as pd
+import cPickle as pickle
+import sklearn
 from pymongo import MongoClient
+
 try:
   from SimpleHTTPServer import SimpleHTTPRequestHandler as Handler
   from SocketServer import TCPServer as Server
@@ -18,32 +18,29 @@ PORT = int(os.getenv('PORT', 8000))
 # Change current directory to avoid exposure of control files
 os.chdir('static')
 
-# VCAP_SERVICES mapping Start
+###----VCAP_SERVICES mapping Start------###
 
 services = os.getenv('VCAP_SERVICES')
 services_json = json.loads(services)
-mongodb_url = services_json['compose-for-mongodb'][0]['credentials']['uri']                     
-#------>>>>>>> Map your vcap_services here
+mongodb_url = services_json['compose-for-mongodb'][0]['credentials']['uri']
 #connect:
 client = MongoClient(mongodb_url)  
 #get the default database:
 db = client.get_default_database()  
-print('connected to mongodb!, welcome to mongodb connection, have a fun')
+print('connected to mongodb!, welcome to mongodb connection, have a fun') 
 
-# VCAP_SERVICES mapping END
+###----VCAP_SERVICES mapping Ends------###
 
-#output = C1.def1()
-#print output
 
-## Scorer code
+###----Regression Code begins------###
+
 data = pd.read_csv('d1_test.csv', header=None, names=['col1', 'col2', 'col3', 'col4', 'col5', 'col6'])
+print data
 print('\n')
-
 with open('test3_model.pkl', 'rb') as f:
-    classifier = pickle.load(f)
+  classifier = pickle.load(f)
 
 del data['col1']
-
 predicted_set = classifier.predict(data)
 prob_predicted = classifier.predict_proba(data)
 
@@ -59,7 +56,8 @@ df2 = pd.concat(frame2,axis=1, join_axes=[data.index])
 df2['col10'] = df2['col9'].map(lambda x: 'Low' if x < 0.5 else 'Medium' if x < 0.75 else 'High')
 del df2['col1']
 print df2
-## Scorer code
+
+###----Regression Code Ends------###
 
 
 httpd = Server(("", PORT), Handler)
@@ -68,4 +66,4 @@ try:
   httpd.serve_forever()
 except KeyboardInterrupt:
   pass
-httpd.server_close()
+httpd.server_close() 
